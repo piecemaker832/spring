@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<!-- DispatcherServlet Context: defines this servlet's request-processing infrastructure -->
+	<beans:bean id= "loginInterceptor" class="home.room.port.commons.interceptor.LoginInterceptor"/>
+	<beans:bean id= "rememberInterceptor" class="home.room.port.commons.interceptor.RememberInterceptor"/>
+	<beans:bean id= "loginAfterInterceptor" class="home.room.port.commons.interceptor.LoginAfterInterceptor"/>
+	<beans:bean id= "AuthInterceptor" class="home.room.port.commons.interceptor.AuthInterceptor"/>
+	<interceptors>
+		<interceptor>
+			<mapping path="/user/loginPost"/>
+			<beans:ref bean="loginInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/**"/>
+			<beans:ref bean="rememberInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/user/login"/>
+			<mapping path="/user/register"/>
+			<beans:ref bean="loginAfterInterceptor"/>
+		</interceptor>
+		<interceptor>
+			<mapping path="/board/modify"/>
+			<mapping path="/board/write"/>
+			<mapping path="/board/reply"/>
+			<beans:ref bean="AuthInterceptor"/>
+		</interceptor>
+	</interceptors>
+	
+	<!-- Enables the Spring MVC @Controller programming model -->
+	<annotation-driven />
+	<mvc:annotation-driven/>
+	<mvc:default-servlet-handler/>
+	<aop:aspectj-autoproxy/>
+	
+	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
+	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/bower_components/**" location="resources/bower_components/" />
+
+	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/views/" />
+		<beans:property name="suffix" value=".jsp" />
+	</beans:bean>
+	
+	<context:component-scan base-package="home.room.port" />
+
+</beans:beans>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="home.room.port.mappers.board.BoardMapper">
+	<insert id="create">
+		INSERT INTO tbl_board( board_no,board_title, board_content, board_writer, board_hit, board_grpno,
+				board_grplvl, board_lvl, board_like, board_dislike, board_cat, reply_cnt)
+		VALUES( #{boardNo},#{boardTitle},#{boardContent},#{boardWriter},0,IFNULL((SELECT MAX(board_no)+1 from tbl_board a),1),0,0
+		,0,0,#{boardCat},#{replyCnt} )
+	</insert>
+	
+	<insert id="replyCreate">
+		INSERT INTO tbl_board(board_title, board_content, board_writer, board_hit, board_grpno,
+				board_grplvl, board_lvl, board_like, board_dislike, board_cat, reply_cnt)
+		VALUES(#{boardTitle},#{boardContent},#{boardWriter},0,#{boardGrpno},#{boardGrplvl}+1,#{boardLvl}+1
+			,0,0,0,0 )
+	</insert>
+	
+	<update id="replyUpdate">
+		UPDATE tbl_board SET board_grplvl = board_grplvl + 1 WHERE board_grpno = #{boardGrpno} and board_grplvl > #{boardGrplvl}
+	</update>
+	
+	<select id="read" resultMap="BoardVOResultMap">
+		SELECT board_no, board_title, board_content, board_writer, board_regdate,board_hit, board_grpno,
+				board_grplvl, board_lvl, board_like, board_dislike, board_cat, reply_cnt
+		FROM tbl_board
+		WHERE board_no = #{boardNo}
+	</select>
+	
+	<update id="update">
+		UPDATE tbl_board
+		SET
+			board_title = #{boardTitle} , board_content = #{boardContent}
+		WHERE
+			board_no = #{boardNo}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM tbl_board
+		WHERE board_no = #{boardNo}
+	</delete>
+	
+	<select id="listAll" resultMap="BoardVOResultMap">
+		<![CDATA[
+			SELECT
+			*
+			FROM tbl_board
+			WHERE board_no>0
+			ORDER BY board_grpno DESC, board_grplvl ASC
+		]]>
+	</select>
+	
+	<select id="listSearch" resultMap="BoardVOResultMap">
+		<![CDATA[
+			SELECT
+			*
+			FROM tbl_board
+			WHERE board_no>0
+		]]>
+		<include refid="search"/>
+		<![CDATA[
+			ORDER BY board_grpno DESC, board_grplvl ASC
+			LIMIT #{pageStart},#{perPageNum}
+		]]>
+	</select>
+	
+	<select id="countSearchedArticles" resultType="int">
+  		<![CDATA[
+  			SELECT
+  			 COUNT(board_no)
+  			FROM tbl_board
+  			WHERE board_no > 0
+  		]]>
+  		<include refid="search"/>
+  	</select>
+  	
+  	<update id="updateHit">
+  		UPDATE tbl_board
+  		SET
+  			board_hit= board_hit+1
+  		WHERE
+  			board_no = #{boardNo}
+  	</update>
+	
+	<sql id="search">
+  		 <if test="searchType != null">
+            <if test="searchType == 't'.toString()">
+                AND board_title LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchType == 'c'.toString()">
+                AND board_content LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchType == 'w'.toString()">
+                AND board_writer LIKE CONCAT('%', #{keyword}, '%')
+            </if>
+            <if test="searchType == 'tc'.toString()">
+                AND (
+                    board_title LIKE CONCAT('%', #{keyword}, '%')
+                    OR board_content LIKE CONCAT('%', #{keyword}, '%')
+                )
+            </if>
+            <if test="searchType == 'cw'.toString()">
+                AND (
+                    board_content LIKE CONCAT('%', #{keyword}, '%')
+                    OR board_writer LIKE CONCAT('%', #{keyword}, '%')
+                )
+            </if>
+            <if test="searchType == 'tcw'.toString()">
+                AND (
+                    board_title LIKE CONCAT('%', #{keyword}, '%')
+                    OR board_content LIKE CONCAT('%', #{keyword}, '%')
+                    OR board_writer LIKE CONCAT('%', #{keyword}, '%')
+                )
+            </if>
+        </if>
+  	</sql>
+	
+	 <resultMap id="BoardVOResultMap" type="BoardVO">
+  		<id property="boardNo" column="board_no"/>
+  		<id property="boardTitle" column="board_title"/>
+  		<id property="boardContent" column="board_content"/>
+  		<id property="boardWriter" column="board_writer"/>
+  		<id property="boardHit" column="board_hit"/>
+  		<id property="boardGrpno" column="board_grpno"/>
+  		<id property="boardGrplvl" column="board_grplvl"/>
+  		<id property="boardLvl" column="board_lvl"/>
+  		<id property="boardLike" column="board_like"/>
+  		<id property="boardDislike" column="board_dislike"/>
+  		<id property="boardCat" column="board_cat"/>
+  		<id property="replyCnt" column="reply_cnt"/>
+  		<id property="boardRegdate" column="board_regdate"/>
+  	</resultMap>
+</mapper>

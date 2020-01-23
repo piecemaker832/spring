@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration 
+    PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias type="home.room.port.user.domain.UserVO" alias="UserVO"/>
+		<typeAlias type="home.room.port.board.domain.BoardVO" alias="BoardVO"/>
+		<typeAlias type="home.room.port.reply.domain.ReplyVO" alias="ReplyVO"/>
+	</typeAliases>
+</configuration>

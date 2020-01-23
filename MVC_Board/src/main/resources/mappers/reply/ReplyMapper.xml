@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="home.room.port.mappers.reply.ReplyMapper">
+	<insert id="create">
+		INSERT INTO tbl_reply(
+		board_no, reply_text, reply_writer
+		) VALUES ( #{boardNo},#{replyText},#{replyWriter})
+	</insert>
+	
+	<update id="update">
+		UPDATE tbl_reply
+		SET
+		reply_text = #{replyText}, update_date= NOW()
+		WHERE
+		reply_no = #{replyNo}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM tbl_reply
+		WHERE reply_no = #{replyNo}
+	</delete>
+	
+	<select id="listPaging" resultMap="ReplyResultMap">
+		SELECT
+			reply_no, board_no, reply_text, reply_writer, reg_date, update_date
+		FROM tbl_reply
+		WHERE board_no = #{boardNo}
+		ORDER BY reply_no DESC
+		LIMIT #{criteria.pageStart},#{criteria.perPageNum}
+	</select>
+	
+	<select id="countReply" resultType="int">
+		SELECT
+			COUNT(board_no)
+		FROM tbl_reply
+		WHERE board_no = #{boardNo}
+	</select>
+	
+	<resultMap id="ReplyResultMap" type="ReplyVO">
+		<id property="replyNo" column="reply_no" />
+		<id property="boardNo" column="board_no" />
+		<id property="replyText" column="reply_text" />
+		<id property="replyWriter" column="reply_writer" />
+		<id property="regDate" column="reg_date" />
+		<id property="updateDate" column="update_date" />
+	</resultMap>
+</mapper>
