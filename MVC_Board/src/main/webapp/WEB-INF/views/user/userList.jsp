@@ -14,7 +14,9 @@
 </head>
 <body>
 <%@ include file="../include/main_header.jsp" %>
-	<table border="1">
+	<div class="container">
+	<h1 class="text-center" style="padding-top:15px; padding-bottom:15px"><strong>회원정보</strong></h1>
+	<table class="table">
 		<tbody>
 			<tr>
 				<th style="width: 100px">아이디</th>
@@ -35,8 +37,9 @@
 				</tr>
 			</c:forEach>
 		</tbody>
-		<button type="button" id="home">home</button>
 	</table>
+	</div>
+	<%@ include file="../include/main_footer.jsp"%>
 	<script>
 	$(document).on("click",function(event){
 		$("#searchBtn").on("click",function(event) {
@@ -47,9 +50,6 @@
 		});
 	});
 	
-		$("#home").on("click", function() {
-			self.location = "${path}"
-		});
 	</script>
 </body>
 </html>

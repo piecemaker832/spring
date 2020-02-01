@@ -9,9 +9,15 @@
 </head>
 <body>
 <%@ include file="include/main_header.jsp" %>
-<h1>
-	${login.userId} 안녕하세요~
-</h1>
+<div class="container">
+		<h1>스프링 게시판 프로젝트</h1>
+		<c:if test="${not empty login.userId}">
+		<p>${login.userId} 안녕하세요</p>
+		</c:if>
+		<c:if test="${empty login.userId}">
+		<p>안녕하세요</p>
+		</c:if>
+</div>
 
 <%@ include file="include/main_footer.jsp" %>
 

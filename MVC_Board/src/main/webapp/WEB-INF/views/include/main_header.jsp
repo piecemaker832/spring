@@ -11,7 +11,9 @@
 <body>
    <!-- Main Header -->
   <header class="main-header">
-  
+  	<div class="jumbotron text-center" style="background-color:#c0bdd0; margin:0px;">
+		<h1><strong>스프링 게시판 프로젝트</strong></h1>
+	</div>
  	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 	  <a class="navbar-brand" href="${path}">Spring</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
