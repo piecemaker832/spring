@@ -39,6 +39,7 @@ public class BoardController {
 	public String writePOST(BoardVO boardVO, RedirectAttributes redirectAttributes) throws Exception {
 		logger.info("write POST...");
 		logger.info(boardVO.toString());
+		boardVO.setBoardContent(boardVO.getBoardContent().replace("\r\n", "<br>"));
 		boardService.create(boardVO);
 		redirectAttributes.addFlashAttribute("msg","regSuccess");
 		
@@ -111,23 +112,23 @@ public class BoardController {
 	}
 	
 	//답글 등록 페이지
-	@RequestMapping(value="/reply", method=RequestMethod.GET)
+	@RequestMapping(value="/response", method=RequestMethod.GET)
 	public String replyGET(@RequestParam("boardNo") int boardNo,@ModelAttribute("searchCriteria")SearchCriteria searchCriteria,
 			Model model) throws Exception {
-		logger.info("reply GET...");
+		logger.info("response GET...");
 		
 		model.addAttribute("board",boardService.read(boardNo));
 		
-		return "/board/reply";
+		return "/board/response";
 	}
 	
 	//답글 등록
-	@RequestMapping(value="/reply",method=RequestMethod.POST)
+	@RequestMapping(value="/response",method=RequestMethod.POST)
 	public String replyPOST(BoardVO boardVO,RedirectAttributes redirectAttributes) throws Exception{
-		logger.info("reply POST...");
+		logger.info("response POST...");
 		logger.info(boardVO.toString());
 		
-		boardService.replyCreate(boardVO);
+		boardService.responseCreate(boardVO);
 		redirectAttributes.addFlashAttribute("msg","regSuccess");
 
 		return "redirect:/board/list";

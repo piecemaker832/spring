@@ -87,11 +87,11 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void replyCreate(BoardVO boardVO) throws Exception {
+	public void responseCreate(BoardVO boardVO) throws Exception {
 		// TODO Auto-generated method stub
-		boardDAO.replyUpdate(boardVO);
+		boardDAO.responseUpdate(boardVO);
 		System.out.println(boardVO.getBoardGrplvl());
-		boardDAO.replyCreate(boardVO);
+		boardDAO.responseCreate(boardVO);
 	}
 
 

@@ -38,7 +38,7 @@
 			</div>
 			<div align="right">
 				<button type="submit" class="btn btn-sm btn-primary listBtn">목록</button>
-				<button type="submit" class="btn btn-sm btn-info reply">답글</button>
+				<button type="submit" class="btn btn-sm btn-info response">답글</button>
 				<c:if test="${login.userId eq board.boardWriter}">
 				<button type="submit" class="btn btn-sm btn-warning modBtn">수정</button>
 				<button type="submit" class="btn btn-sm btn-danger delBtn">삭제</button>
@@ -111,13 +111,13 @@
 								formObj.submit();
 							});
 						
-							$(".reply")
+							$(".response")
 									.on(
 											"click",
 											function() {
 												formObj
 														.attr("action",
-																"${path}/board/reply?boardNo=${board.boardNo}");
+																"${path}/board/response?boardNo=${board.boardNo}");
 												formObj.attr("method", "get");
 												formObj.submit();
 											});

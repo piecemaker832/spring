@@ -197,7 +197,6 @@
         	
         	if (totalCount == 0) {
                 replyCount.html(" 댓글이 없습니다. 의견을 남겨주세요.");
-                replybox.remove();
                 return;
             }
         	

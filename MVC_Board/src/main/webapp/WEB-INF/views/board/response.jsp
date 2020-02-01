@@ -15,7 +15,7 @@
 	<%@ include file="../include/main_header.jsp"%>
 
 	<form role="form" id="writeForm" method="post"
-		action="${path}/board/reply">
+		action="${path}/board/response">
 		<div class="container">
 			<div>
 				<h3>답글 작성</h3>

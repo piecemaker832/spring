@@ -14,5 +14,5 @@ public interface BoardService {
 	List<BoardVO> listSearch(SearchCriteria searchCriteria) throws Exception;
 	int countSearchedArticles(SearchCriteria searchCriteria) throws Exception;
 	void updateHit(Integer boardNo) throws Exception;
-	void replyCreate(BoardVO boardVO) throws Exception; //답글 등록
+	void responseCreate(BoardVO boardVO) throws Exception; //답글 등록
 }

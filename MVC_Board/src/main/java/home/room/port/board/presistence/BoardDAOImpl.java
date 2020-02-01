@@ -72,15 +72,15 @@ public class BoardDAOImpl implements BoardDAO {
 	}
 
 	@Override
-	public void replyCreate(BoardVO boardVO) throws Exception {
+	public void responseCreate(BoardVO boardVO) throws Exception {
 		// TODO Auto-generated method stub
-		sqlSession.insert(NAMESPACE+".replyCreate", boardVO);
+		sqlSession.insert(NAMESPACE+".responseCreate", boardVO);
 	}
 
 	@Override
-	public void replyUpdate(BoardVO boardVO) throws Exception {
+	public void responseUpdate(BoardVO boardVO) throws Exception {
 		// TODO Auto-generated method stub
-		sqlSession.update(NAMESPACE+".replyUpdate",boardVO);
+		sqlSession.update(NAMESPACE+".responseUpdate",boardVO);
 	}
 
 }

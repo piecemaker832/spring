@@ -11,14 +11,14 @@
 		,0,0,#{boardCat},#{replyCnt} )
 	</insert>
 	
-	<insert id="replyCreate">
+	<insert id="responseCreate">
 		INSERT INTO tbl_board(board_title, board_content, board_writer, board_hit, board_grpno,
 				board_grplvl, board_lvl, board_like, board_dislike, board_cat, reply_cnt)
 		VALUES(#{boardTitle},#{boardContent},#{boardWriter},0,#{boardGrpno},#{boardGrplvl}+1,#{boardLvl}+1
 			,0,0,0,0 )
 	</insert>
 	
-	<update id="replyUpdate">
+	<update id="responseUpdate">
 		UPDATE tbl_board SET board_grplvl = board_grplvl + 1 WHERE board_grpno = #{boardGrpno} and board_grplvl > #{boardGrplvl}
 	</update>
 	

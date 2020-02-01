@@ -10,7 +10,7 @@
 <body>
 <%@ include file="../include/main_header.jsp" %>
 	<form action="${path}/user/loginPost" method="post">
-		<div class="container bg-light rounded shadow-sm" style = "padding-top : 130px; padding-bottom : 200px">
+		<div class="container bg-light rounded shadow-sm" style = "padding-top : 200px; padding-bottom : 335px">
 			<h1 class="text-center" style = "padding-bottom : 30px;">로그인</h1>
 			<div align="center">
 			<div class="col-6 col-sm-3">
