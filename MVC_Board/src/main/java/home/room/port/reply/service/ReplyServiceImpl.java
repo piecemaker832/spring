@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import home.room.port.commons.paging.Criteria;
 import home.room.port.reply.domain.ReplyVO;
-import home.room.port.reply.presistence.ReplyDAO;
+import home.room.port.reply.persistence.ReplyDAO;
 
 @Service
 public class ReplyServiceImpl implements ReplyService {

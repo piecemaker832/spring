@@ -1,4 +1,4 @@
-package home.room.port.user.presistence;
+package home.room.port.user.persistence;
 
 import java.util.Date;
 import java.util.List;

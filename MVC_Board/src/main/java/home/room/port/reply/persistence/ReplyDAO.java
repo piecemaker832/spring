@@ -1,4 +1,4 @@
-package home.room.port.reply.presistence;
+package home.room.port.reply.persistence;
 
 import java.util.List;
 

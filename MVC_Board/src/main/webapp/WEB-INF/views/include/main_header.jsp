@@ -11,9 +11,9 @@
 <body>
    <!-- Main Header -->
   <header class="main-header">
-  	<div class="jumbotron text-center" style="background-color:#c0bdd0; margin:0px;">
+ <!--  	<div class="jumbotron text-center" style="background-color:#c0bdd0; margin:0px;">
 		<h1><strong>스프링 게시판 프로젝트</strong></h1>
-	</div>
+	</div>  -->
  	<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
 	  <a class="navbar-brand" href="${path}">Spring</a>
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
@@ -23,7 +23,7 @@
 	  <div class="collapse navbar-collapse" id="navbarsExample03">
 	    <ul class="navbar-nav mr-auto">
 	      <li class="nav-item active">
-	        <a class="nav-link" href="${path}/board/list">게시판 <span class="sr-only">(current)</span></a>
+	        <a class="nav-link" href="${path}">게시판 <span class="sr-only">(current)</span></a>
 	      </li>
 	      <li class="nav-item">
 	        <a class="nav-link" href="#">채팅</a>

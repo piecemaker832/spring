@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 
 import home.room.port.user.domain.LoginDTO;
 import home.room.port.user.domain.UserVO;
-import home.room.port.user.presistence.UserDAO;
+import home.room.port.user.persistence.UserDAO;
 
 @Service
 public class UserServiceImpl implements UserService {

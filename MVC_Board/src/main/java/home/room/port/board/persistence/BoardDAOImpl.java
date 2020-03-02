@@ -1,4 +1,4 @@
-package home.room.port.board.presistence;
+package home.room.port.board.persistence;
 
 import java.util.List;
 

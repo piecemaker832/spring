@@ -7,9 +7,9 @@ import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import home.room.port.board.domain.BoardVO;
-import home.room.port.board.presistence.BoardDAO;
+import home.room.port.board.persistence.BoardDAO;
 import home.room.port.commons.paging.SearchCriteria;
-import home.room.port.upload.presistence.ArticleFileDAO;
+import home.room.port.upload.persistence.ArticleFileDAO;
 
 @Service
 public class BoardServiceImpl implements BoardService {

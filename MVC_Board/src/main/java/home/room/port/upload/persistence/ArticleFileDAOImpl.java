@@ -1,4 +1,4 @@
-package home.room.port.upload.presistence;
+package home.room.port.upload.persistence;
 
 import java.util.HashMap;
 import java.util.List;
